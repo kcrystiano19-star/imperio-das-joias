@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Império das Joias | Loja Online</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: goldenrod;
+        }
+
+        .produto-img {
+            height: 190px;
+            object-fit: contain;
+            background-color: black;
+        }
+
+        .categoria-card {
+            transition: transform 0.2s;
+        }
+
+        .categoria-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .banner {
+            min-height: 220px;
+            background: linear-gradient(120deg, goldenrod, black);
+        }
+
+        .carousel-item img {
+            height: 360px;
+            object-fit: cover;
+        }
+
+        .modal-img {
+            max-height: 300px;
+            object-fit: contain;
+        }
+
+        @media (max-width: 576px) {
+            .carousel-item img {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-black text-warning text-center py-2" >
+        Frete grátis nas compras acima de R$ 199!
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+        <div class="container">
+
+            <a class="navbar-brand fw-bold text-warning" href="#">
+                Império das Joias
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal" aria-expanded="false"
+                aria-label="Abrir menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Início</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#categorias"
+                            role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Categorias
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#categoria">Aliança de Ouro</a></li>
+                            <li><a class="dropdown-item" href="#categoria">Aliança de Prata</a></li>
+                            <li><a class="dropdown-item" href="#categoria">Anel de Noivado Solitário Ouro</a></li>
+                            <li><a class="dropdown-item" href="#categoria">Anel de Formatura</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#destaques">Ofertas</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex gap-2 align-items-center">
+                    <a href="#busca" class="btn btn-outline-warning">
+                        🔎 Buscar
+                    </a>
+
+                    <button class="btn btn-warning" type="button"
+                        data-bs-toggle="modal" data-bs-target="#carrinhoModal">
+                        🛒 Carrinho
+                        <span id="quantidadeCarrinho"
+                            class="badge bg-danger">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="busca" class="container py-3">
+        <form class="input-group" onsubmit="event.preventDefault(); buscarProdutos();">
+            <input type="search" id="campoBusca" class="form-control"
+                placeholder="O que você está procurando?">
+            <button class="btn btn-dark" type="submit">Buscar</button>
+        </form>
+    </section>
+
+    <section class="container mb-5">
+        <div id="carouselPrincipal" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselPrincipal"
+                    data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+
+                <button type="button" data-bs-target="#carouselPrincipal"
+                    data-bs-slide-to="1" aria-label="Slide 2"></button>
+
+                <button type="button" data-bs-target="#carouselPrincipal"
+                    data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner rounded">
+
+                <div class="carousel-item active">
+                    <img src="https://placehold.co/1200x360/black/gold?text=An%C3%A9is+para+voc%C3%AA"
+                        class="d-block w-100" alt="Tecnologia para você">
+                    <div class="carousel-caption">
+                        <h2>Bem-vindo ao Império das Joias</h2>
+                        <p>Encontre as melhores Joias do mercado.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="https://placehold.co/1200x360/black/gold?text=Ofertas+especiais"
+                        class="d-block w-100" alt="Ofertas especiais">
+                    <div class="carousel-caption">
+                        <h2>Ofertas especiais</h2>
+                        <p>Exclusividade e qualidade em um só lugar.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="https://placehold.co/1200x360/black/gold?text=Novidades+da+semana"
+                        class="d-block w-100" alt="Novidades da semana">
+                    <div class="carousel-caption">
+                        <h2>Novidades da semana</h2>
+                        <p>Joias Elegantes</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev" type="button"
+                data-bs-target="#carouselPrincipal" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+
+            <button class="carousel-control-next" type="button"
+                data-bs-target="#carouselPrincipal" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+
+        </div>
+    </section>
+
+    <main class="container">
+
+        <section id="categorias" class="mb-5">
+            <h2 class="fw-bold mb-4">Compre por categoria</h2>
+
+            <div class="row row-cols-3 row-cols-md-6 g-3">
+
+                <div class="col">
+                    <a href="#destaques" class="text-decoration-none text-dark">
+                        <div class="card categoria-card text-center h-100 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="mt-2">Aliança de Ouro</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#destaques" class="text-decoration-none text-dark">
+                        <div class="card categoria-card text-center h-100 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="mt-2">Alinça de Prata</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#destaques" class="text-decoration-none text-dark">
+                        <div class="card categoria-card text-center h-100 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="mt-2">Anel de Formatura</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#destaques" class="text-decoration-none text-dark">
+                        <div class="card categoria-card text-center h-100 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="mt-2">Anel de Noivado Solitário Ouro</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="destaques" class="mb-5">
+            <h2 class="fw-bold mb-4">Produtos em destaque</h2>
+
+            <div id="mensagemBusca" class="alert alert-info d-none"></div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4"
+                id="listaProdutos">
+
+                <div class="col produto" data-nome="Aliança de ouro 18k">
+                    <div class="card h-100 shadow-sm">
+                        <div class="position-relative">
+                            <img src="Captura de tela 2026-10-24 172703.png"
+                                class="card-img-top produto-img" alt="Aliança de ouro 18k">
+                            <span class="badge bg-danger position-absolute top-0 start-0 m-2">
+                                Promoção
+                            </span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Aliança de ouro 18k</h5>
+                            <p class="card-text text-secondary">2mm</p>
+                            <p class="mb-0"><del class="text-secondary">R$ 3.499,90</del></p>
+                            <h5 class="text-warning fw-bold">R$ 2.999,90</h5>
+                            <div class="mt-auto d-grid gap-2">
+                                <button class="btn btn-warning"
+                                    onclick="adicionarCarrinho('Aliança de ouro 18k',2999.90)">
+                                    Adicionar ao carrinho
+                                </button>
+                                <button class="btn btn-outline-secondary"
+                                    data-bs-toggle="modal" data-bs-target="#produto1">
+                                    Ver detalhes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col produto" data-nome="Aliança de prata">
+                    <div class="card h-100 shadow-sm">
+                        <div class="position-relative">
+                            <img src="Captura de tela 2026-10-24 172843.png"
+                                class="card-img-top produto-img" alt="Aliança de prata">
+                            <span class="badge bg-danger position-absolute top-0 start-0 m-2">
+                                Promoção
+                            </span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Aliança de prata</h5>
+                            <p class="card-text text-secondary">3mm</p>
+                            <p class="mb-0"><del class="text-secondary">R$ 2.199,90</del></p>
+                            <h5 class="text-warning fw-bold">R$ 1.799,90</h5>
+                            <div class="mt-auto d-grid gap-2">
+                                <button class="btn btn-warning"
+                                    onclick="adicionarCarrinho('Aliança de prata',1799.90)">
+                                    Adicionar ao carrinho
+                                </button>
+                                <button class="btn btn-outline-secondary"
+                                    data-bs-toggle="modal" data-bs-target="#produto2">
+                                    Ver detalhes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col produto" data-nome="Anel de formatura">
+                    <div class="card h-100 shadow-sm">
+                        <div class="position-relative">
+                            <img src="Captura de tela 2026-10-24 172520.png"
+                                class="card-img-top produto-img" alt="Anel de formatura">
+                            <span class="badge bg-danger position-absolute top-0 start-0 m-2">
+                                Promoção
+                            </span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Anel de formatura de T.I</h5>
+                            <p class="card-text text-secondary">3mm</p>
+                            <p class="mb-0"><del class="text-secondary">R$ 695,23</del></p>
+                            <h5 class="text-warning fw-bold">R$ 565,19</h5>
+                            <div class="mt-auto d-grid gap-2">
+                                <button class="btn btn-warning"
+                                    onclick="adicionarCarrinho('Anel de formatura',565,19)">
+                                    Adicionar ao carrinho
+                                </button>
+                                <button class="btn btn-outline-secondary"
+                                    data-bs-toggle="modal" data-bs-target="#produto3">
+                                    Ver detalhes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col produto" data-nome="Anel de Noivado Solitário Ouro">
+                    <div class="card h-100 shadow-sm">
+                        <div class="position-relative">
+                            <img src="Captura de tela 2026-10-24 172438.png"
+                                class="card-img-top produto-img" alt="Anel de Noivado Solitário Ouro">
+                            <span class="badge bg-danger position-absolute top-0 start-0 m-2">
+                                Promoção
+                            </span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Anel de Noivado Solitário Ouro</h5>
+                            <p class="card-text text-secondary">2mm</p>
+                            <p class="mb-0"><del class="text-secondary">R$ 400.00</del></p>
+                            <h5 class="text-warning fw-bold">R$ 389.70</h5>
+                            <div class="mt-auto d-grid gap-2">
+                                <button class="btn btn-warning"
+                                    onclick="adicionarCarrinho('Anel de Noivado Solitário Ouro',389.70)">
+                                    Adicionar ao carrinho
+                                </button>
+                                <button class="btn btn-outline-secondary"
+                                    data-bs-toggle="modal" data-bs-target="#produto4">
+                                    Ver detalhes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="modal fade" id="produto1" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Aliança de ouro 18k</h5>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="Captura de tela 2026-10-24 172703.png"
+                            class="img-fluid modal-img mb-3" alt="Aliança de ouro 18k">
+                        <p>Alinça para seu casamneto</p>
+                        <h4 class="text-warning">R$ 2.999,90</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning"
+                            onclick="adicionarCarrinho('Aliança de ouro 18k',2999.90)">
+                            Adicionar ao carrinho
+                        </button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="produto2" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Aliança de prata</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="Captura de tela 2026-10-24 172843.png"
+                            class="img-fluid modal-img mb-3" alt="Aliança de prata">
+                        <p>Aliança de prata para seu noivado.</p>
+                        <h4 class="text-warning">R$ 1.799,90</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning"
+                            onclick="adicionarCarrinho('Aliança de prat',1799.90)">
+                            Adicionar ao carrinho
+                        </button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="produto3" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Anel de formatura</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="Captura de tela 2026-10-24 172520.png"
+                            class="img-fluid modal-img mb-3" alt="Anel de formatura">
+                        <p>Anel para sua formatura de TI.</p>
+                        <h4 class="text-warning">R$ 565,15</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning"
+                            onclick="adicionarCarrinho('Anel de formatura',565.19)">
+                            Adicionar ao carrinho
+                        </button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="produto4" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Anel de Noivado Solitário Ouro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="Captura de tela 2026-10-24 172438.png"
+                            class="img-fluid modal-img mb-3" alt="Anel de Noivado Solitário Ouro">
+                        <p>Sólitário especial.</p>
+                        <h4 class="text-warning">R$ 389,70</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning"
+                            onclick="adicionarCarrinho('Anel de Noivado Solitário Ouro',389.70)">
+                            Adicionar ao carrinho
+                        </button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="carrinhoModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Meu carrinho</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul id="itensCarrinho" class="list-group mb-3">
+                            <li class="list-group-item text-secondary">
+                                Seu carrinho está vazio.
+                            </li>
+                        </ul>
+                        <h5>Total: <span id="totalCarrinho">R$ 0,00</span></h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Continuar comprando</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="mb-5">
+            <h2 class="fw-bold mb-4">Ofertas especiais</h2>
+
+            <div class="row g-4">
+                <div class="col-12 col-md-6">
+                    <div class="banner rounded text-white p-4 d-flex flex-column justify-content-center">
+                        <h3>Semana especial</h3>
+                        <p>Descontos em alianças selecionadas.</p>
+                        <a href="#destaques" class="btn btn-light align-self-start">
+                            Ver ofertas
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="banner rounded text-white p-4 d-flex flex-column justify-content-center">
+                        <h3>Escolha sua aliança elegante</h3>
+                        <p>joias com cores vivas.</p>
+                        <a href="#destaques" class="btn btn-light align-self-start">
+                            Comprar agora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <div class="row g-4 text-center">
+
+                <div class="col-12 col-md-4">
+                    <div class="bg-white shadow-sm rounded p-4 h-100">
+                        <div class="fs-1">🚚</div>
+                        <h5>Entrega rápida</h5>
+                        <p class="text-secondary mb-0">Receba seus produtos com praticidade.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="bg-white shadow-sm rounded p-4 h-100">
+                        <div class="fs-1">🔒</div>
+                        <h5>Compra segura</h5>
+                        <p class="text-secondary mb-0">Mais tranquilidade na sua experiência.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="bg-white shadow-sm rounded p-4 h-100">
+                        <div class="fs-1">💳</div>
+                        <h5>Pagamento facilitado</h5>
+                        <p class="text-secondary mb-0">Opções para facilitar suas compras.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="bg-black text-white rounded p-4 p-md-5 mb-5">
+            <div class="row align-items-center g-3">
+                <div class="col-12 col-md-6">
+                    <h2>Receba nossas ofertas!</h2>
+                    <p class="mb-0">Cadastre seu e-mail para acompanhar as novidades.</p>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <form class="input-group" onsubmit="assinarNewsletter(event)">
+                        <input type="email" class="form-control"
+                            placeholder="Seu melhor e-mail" required>
+                        <button class="btn btn-warning" type="submit">Assinar</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contato" class="bg-black text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+
+                <div class="col-12 col-md-3">
+                    <h5 class="text-warning">Império das Joias</h5>
+                    <p class="text-warning-50">
+                        Sua loja de Alianças e Anéis.
+                    </p>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <h5>Institucional</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Sobre nós</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Nossas lojas</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Trabalhe conosco</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <h5>Atendimento</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-2">Central de ajuda</li>
+                        <li class="mb-2">Trocas e devoluções</li>
+                        <li class="mb-2">Prazo de entrega</li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <h5>Contato</h5>
+                    <p class="text-white-50 mb-2">E-mail: contato@imperiodasjoias.com</p>
+                    <p class="text-white-50 mb-2">Telefone: (82) 3333-3333</p>
+                    <p class="text-white-50">Instagram: @imperiodasjoias</p>
+                </div>
+
+            </div>
+
+            <hr class="border-secondary">
+
+            <p class="text-center text-white-50 mb-0">
+                © 2026 imperiodasjoias — Projeto acadêmico.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let carrinho = [];
+        let totalItens = 0;
+
+        function adicionarCarrinho(nome, preco) {
+            carrinho.push({ nome: nome, preco: preco });
+            totalItens++;
+
+            document.getElementById("quantidadeCarrinho").textContent = totalItens;
+            atualizarCarrinho();
+
+            alert(nome + " foi adicionado ao carrinho!");
+        }
+
+        function atualizarCarrinho() {
+            const lista = document.getElementById("itensCarrinho");
+            const total = document.getElementById("totalCarrinho");
+
+            lista.innerHTML = "";
+            let soma = 0;
+
+            if (carrinho.length === 0) {
+                lista.innerHTML = '<li class="list-group-item text-secondary">Seu carrinho está vazio.</li>';
+            }
+
+            carrinho.forEach(function(item) {
+                const li = document.createElement("li");
+                li.className = "list-group-item d-flex justify-content-between";
+                li.textContent = item.nome + " — " +
+                    item.preco.toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL"
+                    });
+
+                lista.appendChild(li);
+                soma += item.preco;
+            });
+
+            total.textContent = soma.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+        }
+
+        function buscarProdutos() {
+            const termo = document.getElementById("campoBusca").value
+                .trim().toLowerCase();
+
+            const produtos = document.querySelectorAll(".produto");
+            let encontrados = 0;
+
+            produtos.forEach(function(produto) {
+                const nome = produto.dataset.nome.toLowerCase();
+                const corresponde = nome.includes(termo);
+
+                produto.classList.toggle("d-none", !corresponde);
+                if (corresponde) encontrados++;
+            });
+
+            const mensagem = document.getElementById("mensagemBusca");
+
+            if (termo === "") {
+                mensagem.classList.add("d-none");
+                produtos.forEach(function(produto) {
+                    produto.classList.remove("d-none");
+                });
+            } else {
+                mensagem.classList.remove("d-none");
+                mensagem.textContent = encontrados
+                    ? encontrados + " produto(s) encontrado(s)."
+                    : "Nenhum produto encontrado. Tente outro termo.";
+            }
+        }
+
+        function assinarNewsletter(event) {
+            event.preventDefault();
+            alert("Inscrição realizada! Obrigado por se cadastrar.");
+            event.target.reset();
+        }
+    </script>
+
+</body>
+</html>
